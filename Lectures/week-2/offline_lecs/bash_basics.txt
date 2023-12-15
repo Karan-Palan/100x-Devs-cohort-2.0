@@ -1,0 +1,13 @@
+# Bash and commands + Git/GitHub
+
+1. pwd — print working directory
+2. cd — change directory
+3. ls — list all the files in a dir
+4. mkdir — make directory
+5. touch — make a file
+6. cat — gives the context of the file
+7. vi — opens the file(vim) in the terminal
+8. mv — initial folder to other folder (moves the file the easy way)
+9. cp — copy a folder to another one
+10. node -- start node
+npm -- node package manager
