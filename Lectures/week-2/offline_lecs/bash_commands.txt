@@ -11,3 +11,4 @@
 9. cp — copy a folder to another one
 10. node -- start node
 npm -- node package manager
+
