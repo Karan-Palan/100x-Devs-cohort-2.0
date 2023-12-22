@@ -15,5 +15,5 @@ handlePromise().catch(err => console.log(err));
 
 // Async wait VS Promise.then() -- async await is a syntactical sugar over Promise.then()
 
-// You don't have to do alot of promise cahining for async and await
+// You don't have to do alot of promise chaining for async and await
 
