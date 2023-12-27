@@ -45,5 +45,31 @@
   const app = express();
   
   app.use(bodyParser.json());
+
+  let todos = [];
+
+  app.get("/todos", (req,res)=> {
+    res.json(todos);
+  })
+
+  app.get("/todos/:id", (req,res)=> {
+    
+  })
+
+  app.post("/todos", (req,res)=> {
+    
+  })
+
+  app.patch("/todos/:id", (req,res)=> {
+    
+  })
+
+  app.delete("/", (req,res)=> {
+    
+  })
+
+  app.listen(3000, ()=> {
+    console.log("Server has started");
+  })
   
   module.exports = app;
