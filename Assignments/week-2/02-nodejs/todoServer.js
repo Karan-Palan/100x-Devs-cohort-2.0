@@ -9,7 +9,7 @@
   1.GET /todos - Retrieve all todo items
     Description: Returns a list of all todo items.
     Response: 200 OK with an array of todo items in JSON format.
-    Example: GET http://localhost:3000/todos
+    Example: GET http://    localhost:3000/todos
     
   2.GET /todos/:id - Retrieve a specific todo item by ID
     Description: Returns a specific todo item identified by its ID.
@@ -50,25 +50,55 @@
 
   app.get("/todos", (req,res)=> {
     res.json(todos);
-  })
+    })
 
   app.get("/todos/:id", (req,res)=> {
-    
+    //let userId = req.params.userId
+    const todoFind = todos.find(t => t.id === parseInt(req.params.id))
+    // Handling not found
+    if (!todoFind) {
+      res.status(404).send;
+    }
+    else {
+      res.json(todoFind);
+    }
+
   })
 
   app.post("/todos", (req,res)=> {
-    
+    const newTodo = {
+      id : Math.floor(Math.random() * 10000),
+      title: req.body.title,
+      description: req.body.description
+    }
+    todos.push(newTodo);
+    res.json(newTodo);
+    res.status(201).send;
   })
 
-  app.patch("/todos/:id", (req,res)=> {
-    
+  app.put("/todos/:id", (req,res)=> {
+    const todoIndex = todos.findIndex(t => t.id === parseInt(req.params.id));
+    if (todoIndex === -1) {
+      res.status(404).send();
+    } else {
+      todos[todoIndex].title = req.body.title;
+      todos[todoIndex].description = req.body.description;
+      res.json(todos[todoIndex]);
+    }
   })
 
-  app.delete("/", (req,res)=> {
-    
+  app.delete("/todos/:id", (req,res)=> {
+    const todoIndex = todos.findIndex(t => t.id === parseInt(req.params.id));
+    if (todoIndex === -1) {
+      res.status(404).send
+    }
+    else{
+      todos.splice(todoIndex, 1)
+      res.status(200).send
+    }
   })
 
-  app.listen(3000, ()=> {
+  app.listen(4000, ()=> {
     console.log("Server has started");
   })
   
