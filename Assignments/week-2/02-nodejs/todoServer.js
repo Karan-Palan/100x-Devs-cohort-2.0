@@ -73,7 +73,7 @@
     }
     todos.push(newTodo);
     res.json(newTodo);
-    res.status(201).send;
+    res.status(201).json(newTodo);
   })
 
   app.put("/todos/:id", (req,res)=> {

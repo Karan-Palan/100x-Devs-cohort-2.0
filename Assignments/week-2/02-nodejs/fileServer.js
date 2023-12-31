@@ -17,8 +17,17 @@ const fs = require('fs');
 const path = require('path');
 const app = express();
 
-app.get(req,res => {
-  fs.readFile()
+app.get("/files", (req,res) => {
+  fs.read
 })
+
+app.get("/file/:filename", (req,res) => {
+
+})
+
+app.listen(3000, ()=> {
+  console.log("Sever started")
+})
+
 
 module.exports = app;
