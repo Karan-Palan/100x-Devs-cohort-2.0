@@ -5,11 +5,16 @@ const Dashboard = React.lazy(() => {
 
 function App() {
   return (
+    <div>
+    <button >
+
+    </button>
     <BrowserRouter>
       <Routes>
         <Route path="/dashboard" element={<Dashboard />}></Route>
       </Routes>
     </BrowserRouter>
+    </div>
   );
 }
 
