@@ -1,5 +1,7 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-const Dashboard = React.lazy(() => {
+import { Suspense, lazy } from "react";
+import { BrowserRouter, Routes, Route,  } from "react-router-dom";
+// Lazy Loading
+const Dashboard = lazy(() => {
   import("./pages/Dashboard");
 });
 
@@ -11,7 +13,8 @@ function App() {
     </button>
     <BrowserRouter>
       <Routes>
-        <Route path="/dashboard" element={<Dashboard />}></Route>
+        {/* Does not get fetched immeditaealy, so add the suspense API */}
+        <Route path="/dashboard" element={<Suspense fallback={"loading..."}> <Dashboard /></Suspense>}></Route>
       </Routes>
     </BrowserRouter>
     </div>
