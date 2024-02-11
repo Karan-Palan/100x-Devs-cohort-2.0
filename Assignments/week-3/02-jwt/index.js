@@ -22,8 +22,12 @@ function signJwt(username, password) {
   if (!usernameResponse.success || !passwordResponse.success) {
     return null;
   }
-  const sign = jwt.sign({ username }, jwtPassword);
-  return sign;
+  const signature = jwt.sign(
+    {
+      username,
+    },
+    jwtPassword
+  );
 }
 
 /**
@@ -35,13 +39,12 @@ function signJwt(username, password) {
  *                    using the secret key.
  */
 function verifyJwt(token) {
-  let ans = true;
   try {
-    jwt.verify(token, jwtPassword);
+    const verified = jwt.verify(token, jwtPassword);
+    return true;
   } catch (error) {
-    ans = false;
+    return false;
   }
-  return ans;
 }
 
 /**
@@ -52,8 +55,8 @@ function verifyJwt(token) {
  *                         Returns false if the token is not a valid JWT format.
  */
 function decodeJwt(token) {
-  const decode = jwt.decode(token);
-  if (!decode) {
+  const decoded = jwt.decode(token);
+  if (decoded) {
     return true;
   } else {
     return false;
