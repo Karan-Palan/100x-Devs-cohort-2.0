@@ -4,20 +4,19 @@ const { Admin, User, Course } = require("../db");
 const router = Router();
 
 // Admin Routes
-router.post("/signup", (req, res) => {
+router.post("/signup", async (req, res) => {
   // Implement admin signup logic
   const username = req.body.username;
   const password = req.body.password;
-  Admin.create({
+
+  await Admin.create({
     username: username,
     password: password,
-  })
-    .then(() => {
-      res.json({ msg: "Done" });
-    })
-    .catch(() => {
-      res.json({ msg: "Not created" });
-    });
+  });
+
+  res.json({
+    msg: "Admin creates sucessfully",
+  });
 });
 
 app.post("/courses", adminMiddleware, async (req, res) => {
@@ -27,23 +26,22 @@ app.post("/courses", adminMiddleware, async (req, res) => {
   const imageLink = req.body.imageLink;
   const price = req.body.price;
   const newCourse = await Course.create({
-    title: title,
-    imageLink: imageLink,
-    price: price,
-    description: description,
+    title,
+    description,
+    imageLink,
+    price,
   });
   res.json({
-    msg: "Created sucessfully",
-    courseId: newCourse._id, // MongoDb creates a random Id
+    msg: "New course created",
+    courseId: newCourse._id,
   });
 });
 
-app.get("/courses", adminMiddleware, (req, res) => {
+app.get("/courses", adminMiddleware, async (req, res) => {
   // Implement fetching all courses logic
-  Course.find({}).then(() => {
-    res.json({
-      courses : response
-    });
+  const response = await Course.find({});
+  res.json({
+    courses: response,
   });
 });
 

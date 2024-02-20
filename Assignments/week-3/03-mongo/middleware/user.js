@@ -12,10 +12,11 @@ function userMiddleware(req, res, next) {
     if (value) {
       next();
     } else {
-      res.status(403).json({ msg: "User does not exist" });
+      res.status(403).json({
+        msg: "User not found",
+      });
     }
   });
 }
 
 module.exports = userMiddleware;
-    
